@@ -18,27 +18,37 @@ This project demonstrates Stripe payment integration in a Django application. Us
 ```
 stripe_payments/
 ├── checkout/
+│   ├── __pycache__/
 │   ├── migrations/
-│   ├── templates/
-│   │   └── pricing.html
 │   ├── admin.py
 │   ├── apps.py
 │   ├── models.py
+│   ├── tests.py
 │   ├── urls.py
 │   └── views.py
+│
 ├── stripe_payments/
+│   ├── __pycache__/
 │   ├── __init__.py
 │   ├── asgi.py
 │   ├── settings.py
 │   ├── urls.py
 │   └── wsgi.py
+│
 ├── templates/
 │   ├── 404.html
-│   └── error.html
-├── db.sqlite3
+│   ├── error.html
+│   ├── payment-failed.html
+│   ├── payment-success.html
+│   ├── pricing.html
+│   └── product.html
+│
 ├── .env
 ├── .gitignore
-└── manage.py
+├── db.sqlite3
+├── manage.py
+├── README.md
+└── requirements.txt
 ```
 
 ---
@@ -129,6 +139,7 @@ python manage.py runserver
 - **checkout/views.py**: Handles product display, Stripe checkout session creation, and payment result pages.
 - **templates/pricing.html**: Product detail and purchase page.
 - **templates/404.html** and **templates/error.html**: Error handling templates.
+- **templates/payment-success.html** and **templates/payment-failed.html**: Payment result pages.
 
 ---
 
