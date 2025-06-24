@@ -27,7 +27,7 @@ def CreateCheckoutSessionView(request, productID):
             {
                 'price_data': {
                     'currency': 'usd',
-                    'unit_amount': product.price * 100,
+                    'unit_amount': int(product.price * 100),  # Ensure integer
                     'product_data': {
                         'name': product.name,
                         'description': product.description,
@@ -44,8 +44,8 @@ def CreateCheckoutSessionView(request, productID):
         
         mode='payment',
 
-        success_url=YOUR_DOMAIN + f'/payment-success/{productID}',
-        cancel_url=YOUR_DOMAIN + f'/pricing/{productID}',
+        success_url=YOUR_DOMAIN + f'/stripe/payment-success/{productID}/',
+        cancel_url=YOUR_DOMAIN + f'/stripe/pricing/{productID}/',
     )
     except Product.DoesNotExist:
         return render(request, '404.html', status=404)
@@ -78,3 +78,8 @@ def PricingView(request, productID):
         'selected_product': selected_product,
         'productID': productID
     })
+
+
+def ProductsListView(request):
+    products = Product.objects.all()
+    return render(request, 'products.html', {'products': products})
