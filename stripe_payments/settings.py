@@ -30,7 +30,7 @@ SECRET_KEY = 'django-insecure-&%t14)jag_gd@pdm%rgj%%7&cn*()c#u7$zo%d8%7_#+wg86z5
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -137,3 +137,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Stripe keys from environment variables
 STRIPE_PUBLISH_KEY = os.getenv('STRIPE_PUBLISH_KEY')
 STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY')
+STRIPE_WEBHOOK_SECRET = os.getenv('STRIPE_WEBHOOK_SECRET')

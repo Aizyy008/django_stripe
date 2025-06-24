@@ -1,48 +1,119 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>All Products</title>
+  <meta charset="UTF-8" />
+  <title>All Products</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    :root {
+      --green: #00ff84;
+      --black: #121212;
+      --gray: #1f1f1f;
+      --text: #dddddd;
+    }
+
+    body {
+      margin: 0;
+      padding: 2rem;
+      background-color: var(--black);
+      color: var(--text);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 2.5rem;
+      color: var(--green);
+      margin-bottom: 2rem;
+    }
+
+    .products-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .product-card {
+      background-color: var(--gray);
+      border-radius: 12px;
+      padding: 1.5rem;
+      text-align: center;
+      box-shadow: 0 8px 20px rgba(0, 255, 132, 0.05);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .product-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 30px rgba(0, 255, 132, 0.1);
+    }
+
+    .product-card img {
+      width: 100%;
+      max-width: 180px;
+      border-radius: 10px;
+      margin-bottom: 1rem;
+    }
+
+    .product-card h2 {
+      font-size: 1.3rem;
+      color: var(--green);
+      margin: 0.5rem 0;
+    }
+
+    .product-card p {
+      font-size: 0.95rem;
+      color: #bbb;
+      margin: 0.5rem 0;
+    }
+
+    .product-card .price {
+      font-weight: bold;
+      color: var(--green);
+    }
+
+    .btn {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.6rem 1.2rem;
+      background-color: var(--green);
+      color: var(--black);
+      border: none;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background 0.3s ease;
+    }
+
+    .btn:hover {
+      background-color: #00e676;
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 1.8rem;
+      }
+    }
+  </style>
 </head>
 <body>
-    <h1>All Products</h1>
-    <div class="products-list">
-        {% for product in products %}
-            <div class="product-card">
-                <img src="{{ product.image }}" alt="{{ product.name }}" width="150">
-                <h2>{{ product.name }}</h2>
-                <p>Price: ${{ product.price }}</p>
-                <p>{{ product.description }}</p>
-                <a href="{% url 'pricing' product.id %}"><button>View & Buy</button></a>
-            </div>
-        {% empty %}
-            <p>No products available.</p>
-        {% endfor %}
-    </div>
-    <style>
-        .products-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 30px;
-        }
-        .product-card {
-            border: 1px solid #ddd;
-            border-radius: 10px;
-            padding: 20px;
-            width: 250px;
-            text-align: center;
-        }
-        img {
-            border-radius: 10px;
-        }
-        button {
-            padding: 8px 16px;
-            background: dodgerblue;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            margin-top: 10px;
-        }
-    </style>
+
+  <h1>All Products</h1>
+
+  <div class="products-list">
+    {% for product in products %}
+      <div class="product-card">
+        <img src="{{ product.image }}" alt="{{ product.name }}">
+        <h2>{{ product.name }}</h2>
+        <p class="price">Price: ${{ product.price }}</p>
+        <p>{{ product.description }}</p>
+        <a href="{% url 'pricing' product.id %}" class="btn">View & Buy</a>
+      </div>
+    {% empty %}
+      <p style="text-align: center; color: #999;">No products available.</p>
+    {% endfor %}
+  </div>
+
 </body>
 </html>

@@ -1,39 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Products page</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Products Page</title>
+  <style>
+    :root {
+      --green: #00ff84;
+      --black: #121212;
+      --gray: #1f1f1f;
+      --text: #dddddd;
+    }
+
+    body {
+      margin: 0;
+      padding: 2rem;
+      background-color: var(--black);
+      color: var(--text);
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 2.5rem;
+      color: var(--green);
+      margin-bottom: 2rem;
+    }
+
+    .product-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .products {
+      background-color: var(--gray);
+      padding: 1.5rem;
+      border-radius: 16px;
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .products:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(0, 255, 132, 0.1);
+    }
+
+    .products img {
+      width: 100%;
+      max-width: 180px;
+      height: auto;
+      border-radius: 12px;
+      margin-bottom: 1rem;
+    }
+
+    .products a {
+      text-decoration: none;
+      color: var(--green);
+      font-weight: bold;
+      display: block;
+      margin: 0.5rem 0;
+    }
+
+    .products p {
+      color: #ccc;
+      margin: 0;
+    }
+
+    @media (max-width: 600px) {
+      .products img {
+        max-width: 100%;
+      }
+
+      h1 {
+        font-size: 1.8rem;
+      }
+    }
+  </style>
 </head>
 <body>
-    <h1>Products</h1>
-    <div class="product-container">
-        {% for i in products %}
-            <div class="products">
-                <a href="{% url 'pricing' i.id %}">
-                    <img class="img" src="{{i.image}}" alt="">
-                </a><br>
-                <a href="{% url 'pricing' i.id %}">{{i.name}}</a>
-                <p>$ {{i.price}}</p>
-            </div>
-        {% endfor %}
-    </div>
-    <style>
-        body {
-            padding: 10px;
-            box-sizing: border-box;
-        }
 
-        .product-container {
-            display: flex;
-            flex-direction: row;
-            width: 100%;
-            height: 100vh;
-        }
-        .img {
-            width: 60%;
-            border-radius: 50px;
-        }
-    </style>
+  <h1>Products</h1>
+
+  <div class="product-container">
+    {% for i in products %}
+      <div class="products">
+        <a href="{% url 'pricing' i.id %}">
+          <img class="img" src="{{ i.image }}" alt="{{ i.name }}">
+        </a>
+        <a href="{% url 'pricing' i.id %}">{{ i.name }}</a>
+        <p>$ {{ i.price }}</p>
+      </div>
+    {% endfor %}
+  </div>
+
 </body>
 </html>

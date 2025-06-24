@@ -10,4 +10,5 @@ urlpatterns = [
     path('payment-success/<int:productID>/', PaymentSuccessView, name='payment-success'),
     path('payment-failed/<int:productID>/', PaymentFailedView, name='payment-failed'),
     path('checkout/<int:product_id>/', CreateCheckoutSessionView, name='checkout'),
+    path('webhook/', stripe_webhook, name='stripe-webhook'),
 ]
