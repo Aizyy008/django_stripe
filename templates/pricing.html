@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout page</title>
+</head>
+<body>
+    {% if selected_product %}
+        <h1>Checkout for product: {{ selected_product.name }}</h1>
+        <div class="product-container">
+            <div class="products">
+                <img class="img" src="{{ selected_product.image }}" alt="">
+                <p>{{ selected_product.name }}</p>
+                <p>Price: $ {{ selected_product.price }}</p>
+                <p>Description: {{ selected_product.description }}</p>
+                <a href="{% url 'create-checkout-session' selected_product.id %}"><button>Purchase</button></a>
+            </div>
+        </div>
+    {% else %}
+        <h1>Product not found</h1>
+    {% endif %}
+    <style>
+        body {
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        .product-container {
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+            height: 100vh;
+        }
+        .img {
+            width: 40%;
+            border-radius: 50px;
+        }
+        button {
+            padding: 10px;
+            border-radius: 5px;
+            background-color: dodgerblue;
+            color: white;
+            border: none;
+            margin: 15px;
+        }
+    </style>
+</body>
+</html>
