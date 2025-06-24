@@ -1,10 +1,115 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Page Not Found</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>404 - Page Not Found</title>
+  <style>
+    :root {
+      --green: #00ff84;
+      --black: #0f0f0f;
+      --gray: #1c1c1c;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: var(--black);
+      color: var(--green);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+
+    .container {
+      text-align: center;
+      background-color: var(--gray);
+      padding: 3rem;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0, 255, 132, 0.15);
+      max-width: 600px;
+      width: 100%;
+    }
+
+    h1 {
+      font-size: 6rem;
+      font-weight: bold;
+      margin-bottom: 1rem;
+      color: var(--green);
+    }
+
+    h2 {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+      color: #eee;
+    }
+
+    p {
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
+      color: #ccc;
+      line-height: 1.6;
+    }
+
+    ul {
+      list-style-type: disc;
+      text-align: left;
+      padding-left: 2rem;
+      margin-bottom: 2rem;
+      color: #bbb;
+    }
+
+    a {
+      display: inline-block;
+      padding: 0.75rem 1.5rem;
+      background-color: var(--green);
+      color: var(--black);
+      text-decoration: none;
+      font-weight: bold;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 255, 132, 0.3);
+      transition: background 0.3s ease, transform 0.2s ease;
+    }
+
+    a:hover {
+      background-color: #00e676;
+      transform: translateY(-2px);
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 4rem;
+      }
+
+      .container {
+        padding: 2rem;
+      }
+
+      ul {
+        padding-left: 1.2rem;
+      }
+    }
+  </style>
 </head>
 <body>
-    <h1>404 - Page Not Found</h1>
-    <p>The page you are looking for does not exist.</p>
+  <div class="container">
+    <h1>404</h1>
+    <h2>Oops! Page not found</h2>
+    <p>The page you were trying to reach doesn't exist, has been moved, or the URL may be incorrect.</p>
+    <p>Here are a few things you can try:</p>
+    <ul>
+      <li>Double-check the web address for typos</li>
+      <li>Return to the homepage and navigate again</li>
+      <li>Contact support if you think this is an error</li>
+    </ul>
+    <a href="{% url 'products-list' %}" >Back to Home</a>
+  </div>
 </body>
 </html>
